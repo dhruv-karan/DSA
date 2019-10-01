@@ -32,7 +32,12 @@ def quick(array,low,high):
     
 
 
-a = [10,7,8,9,1,5,2]
+a = [10,7,8,9,1,5,2] [2,7,8,9,1,5,10]
+
+[1,2,8,9,10,5,7]
+[1,2,5,9,10,8,7]
+[1,2,5,7,8,9,10]
+
 
 quick(a,0,6)
 
@@ -43,7 +48,7 @@ quick(a,0,6)
 def partion(array,low,high):
     i = (low-1)
     pivot = array[low]
-
+    
     for j in range(low,high):
         if pivot>array[j]:
             i=i+1
