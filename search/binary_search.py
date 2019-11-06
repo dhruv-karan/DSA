@@ -12,6 +12,8 @@ def find(array,num,left,right):
     
     if left==right:
         return array[left]
+    elif left > right:
+        return 'NO'
     elif num>array[mid]:
         left = mid+1
         return find(array,num,left,right)
@@ -26,4 +28,4 @@ a = [1,2,3,4,5,6]
 
 
 
-print(a,1,0,5)
+find(a,100000,0,5)
