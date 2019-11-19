@@ -41,8 +41,42 @@ def count_node(root):
     right = count_node(root.right)
     return 1+left+right
 
-
+def get_largets_data(root):
+    if root ==None:
+        return -1
+    left = get_largets_data(root.left)
+    right = get_largets_data(root.right)
+    return max(left,right,root.data)
+    
+def height(root):
+    if root==None:
+        return 0
+    left = height(root.left)
+    right = height(root.right)
+    lar = max(left,right)
+    return 1+lar
         
+def no_of_leaf(root):
+    if root ==None:
+        return 0
+    elif root.left == None and root.right==None:
+        return 1
+    left = no_of_leaf(root.left)
+    right = no_of_leaf(root.right)
+    return left+right
+    
+
+def print_level_k(root,k):
+    if root==None:
+        return 
+    if k==0:
+        print(root.data)
+        return
+    print_level_k(root.left,k-1)
+    print_level_k(root.right,k-1)
+
+    
+    
 n1 = Tree(1)
 n2 = Tree(2)
 n3 = Tree(3)
@@ -50,6 +84,7 @@ n4 = Tree(4)
 n5 = Tree(5)
 n6 = Tree(6)
 n7 = Tree(7)
+
 
 
 
@@ -68,4 +103,8 @@ Inorder_traversal(n1)
 
 count_node(n1)
 
- 
+get_largets_data(n1)
+height(n1)
+no_of_leaf(n1)
+print_level_k(n1,2)
+
