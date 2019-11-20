@@ -74,7 +74,33 @@ def print_level_k(root,k):
         return
     print_level_k(root.left,k-1)
     print_level_k(root.right,k-1)
+    
+    
+def remove_leaf(root):
+    if root == None:
+        return  None
+    if root.left==None and root.right==None:
+        return None
+    root.left = remove_leaf(root.left)
+    root.right = remove_leaf(root.right)
+    return root
 
+def is_balanced(root):
+    if root == None:
+        return True
+    lh = height(root.left)
+    lr = height(root.right)
+    if abs(lh-lr)>1:
+        return False
+    is_b_l = is_balanced(root.left)
+    is_b_r = is_balanced(root.right)
+    if is_b_l and is_b_r:
+        return True
+    else:
+        return False
+    
+    
+    
     
     
 n1 = Tree(1)
@@ -87,7 +113,6 @@ n7 = Tree(7)
 
 
 
-
 n1.left= n2
 n1.right=n3
 n2.left = n4
@@ -96,15 +121,18 @@ n3.left = n6
 n3.right = n7
 
 
+#++++++++++++++++++++++++++++++++++++++=======================FUNCTION CALLS==========================================
 prenorder_traversal(n1)
 postorder_traversal(n1)
 Inorder_traversal(n1)
-
-
 count_node(n1)
-
 get_largets_data(n1)
 height(n1)
 no_of_leaf(n1)
 print_level_k(n1,2)
+root = remove_leaf(n1)
+prenorder_traversal(root)
+is_balanced(n1)
+
+
 
