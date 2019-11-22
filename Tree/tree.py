@@ -98,28 +98,47 @@ def is_balanced(root):
         return True
     else:
         return False
+
+def make_tree():
+    print('enter the root node')
+    value = int(input())
+    if value !=-1:
+        queue = []
+        node = Tree(value)
+        queue.append(node)
+        while(len(queue)>0):
+            print('enter the left child of node:', queue[0].data)
+            value = int(input())
+            if value == -1:
+                queue = queue[::-1]
+                queue.pop()
+                queue = queue[::-1]
+            else:
+                n = queue[0]
+                n.left = Tree(value)
+                queue.append(n.left)
+                print('enter the right child of node:', queue[0].data)
+                value = int(input())
+                if value == -1:
+                    queue = queue[::-1]
+                    queue.pop()
+                    queue = queue[::-1]
+                else:
+                    n = queue[0]
+                    n.right =Tree( value)
+                    queue.append(n.right)
+                    queue = queue[::-1]
+                    queue.pop()
+                    queue = queue[::-1]
+    else:print('Tree is empty')
+    return node
+                
+                
+            
     
-    
-    
-    
-    
-n1 = Tree(1)
-n2 = Tree(2)
-n3 = Tree(3)
-n4 = Tree(4)
-n5 = Tree(5)
-n6 = Tree(6)
-n7 = Tree(7)
 
 
-
-n1.left= n2
-n1.right=n3
-n2.left = n4
-n2.right = n5
-n3.left = n6
-n3.right = n7
-
+n1 = make_tree()
 
 #++++++++++++++++++++++++++++++++++++++=======================FUNCTION CALLS==========================================
 prenorder_traversal(n1)
