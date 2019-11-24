@@ -5,6 +5,8 @@ Created on Tue Nov 12 17:12:10 2019
 
 @author: dhruv
 """
+from queue import Queue 
+
 
 class Tree:
     def __init__(self,data):
@@ -134,12 +136,28 @@ def make_tree():
     return node
                 
                 
+def levelwise_traversal(root):
+    q = Queue()
+    q.put(root)
+    while(True != q.empty()):
+        root = q.get()
+        if root == None:
+            q.get()
+        else:
+            print(root.data)
+            q.put(root.left)
+            q.put(root.right)
             
     
-
-
+    
+    
+    
+    
+    
+    
 n1 = make_tree()
 
+levelwise_traversal(n1)
 #++++++++++++++++++++++++++++++++++++++=======================FUNCTION CALLS==========================================
 prenorder_traversal(n1)
 postorder_traversal(n1)
@@ -155,3 +173,11 @@ is_balanced(n1)
 
 
 
+
+
+q.put('a')
+q.put('b')
+
+
+q.get()
+q.qsize()
