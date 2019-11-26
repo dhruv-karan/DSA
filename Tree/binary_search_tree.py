@@ -5,6 +5,7 @@ Created on Sat Nov 23 20:53:56 2019
 
 @author: dhruv
 """
+from queue import Queue 
 
 class Tree:
     def __init__(self,data):
@@ -58,11 +59,75 @@ def search(num,root):
     elif root.data<num:
         return search(num,root.right)
     
-        
-        
-    
-    
+def print_range(root,min_,max_):
+    if root ==None:
+        return
+    if root.data >min_ and root.data<max_:
+        print(root.data)
+    if root.data<min_:
+        print_range(root.right,min_,max_)
+    elif root.data>max_ :
+        print_range(root.left,min_,max_)
+    else:
+         print_range(root.right,min_,max_)
+         print_range(root.left,min_,max_)
+
+      
+def arry2bst(arr):
+    middle = int(len(arr)/2)
+    if len(arr) ==0:
+        return
+    node = Tree(arr[middle])
+    node.left = arry2bst(arr[:middle])
+    node.right = arry2bst(arr[middle+1:])
+    return node
+
+def min_(root):
+    if root == None:
+        return 10000
+    left = min_(root.left)
+    right = min_(root.right)
+    mi = min(left,right,root.data)
+    return mi
+
+def max_(root):
+    if root == None:
+        return -1
+    left = min_(root.left)
+    right = min_(root.right)
+    mx = max(left,right,root.data)
+    return mx
+
+
+
+def levelwise_traversal(root):
+    q = Queue()
+    q.put(root)
+    while(True != q.empty()):
+        root = q.get()
+        if root == None:
+            q.get()
+        else:
+            print(root.data)
+            q.put(root.left)
+            q.put(root.right)
+            
+
+
+
+
     
 n1 = make_tree()
-
 search(40,n1)
+print_range(n1,4,15)
+node = arry2bst([1,2,3,4,5,6,7])
+levelwise_traversal(n1)
+
+
+min_(n1)
+max_(n1)
+
+
+
+
+
