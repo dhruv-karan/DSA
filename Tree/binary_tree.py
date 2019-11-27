@@ -150,6 +150,25 @@ def levelwise_traversal(root):
             
     
     
+def path_2_node(root,node):
+    if root == None:
+        return None
+    if root.data == node:
+        l =list()
+        l.append(root.data)
+        return l
+    left = path_2_node(root.left,node)
+    if left !=None:
+        left.append(root.data)
+        return left
+    
+    right = path_2_node(root.right,node)
+    if right !=None:
+        right.append(root.data)
+        return right
+    else:return None
+
+        
     
     
     
@@ -158,6 +177,8 @@ def levelwise_traversal(root):
 n1 = make_tree()
 
 levelwise_traversal(n1)
+path = path_2_node(n1,4)
+
 #++++++++++++++++++++++++++++++++++++++=======================FUNCTION CALLS==========================================
 prenorder_traversal(n1)
 postorder_traversal(n1)
@@ -170,14 +191,3 @@ print_level_k(n1,2)
 root = remove_leaf(n1)
 prenorder_traversal(root)
 is_balanced(n1)
-
-
-
-
-
-q.put('a')
-q.put('b')
-
-
-q.get()
-q.qsize()
